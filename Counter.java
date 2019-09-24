@@ -14,35 +14,35 @@ public class Counter extends JFrame implements ActionListener {
 	JButton[] btn;
 	JTextArea jta;
 	JScrollPane sp=null;
-	String str[] = {"ÎÄ¼şÑ¡Ôñ","×Ö·ûÍ³¼Æ","´ÊÍ³¼Æ","ĞĞÍ³¼Æ","¿ÕĞĞ/×¢ÊÍĞĞ/´úÂëĞĞÍ³¼Æ"};
+	String str[] = {"æ–‡ä»¶é€‰æ‹©","å­—ç¬¦ç»Ÿè®¡","è¯ç»Ÿè®¡","è¡Œç»Ÿè®¡","ç©ºè¡Œ/æ³¨é‡Šè¡Œ/ä»£ç è¡Œç»Ÿè®¡"};
 	String file_path = null;
 	
-	//Í¼ĞÎ½çÃæµÄ×é¼ş¶¨Òå
-	public Counter(){
-      btn = new JButton[str.length];
-	  jp = new JPanel(new GridLayout(6,1,0,20));
-	  jta = new JTextArea();
-	  sp=new JScrollPane();
-	  getContentPane().add(jp,BorderLayout.WEST);
-	  getContentPane().add(jta,BorderLayout.EAST);
-      for(int i=0;i<str.length;i++){
-    	  btn[i] = new JButton(str[i]);
-    	  jp.add(btn[i]);
-    	  btn[i].addActionListener(this);
-    	  btn[i].setActionCommand(str[i]);
-      }
-      sp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-	  sp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-	  sp.setViewportView(jta);
-	  getContentPane().add(sp);
+	//å›¾å½¢ç•Œé¢çš„ç»„ä»¶å®šä¹‰
+        public Counter(){
+            btn = new JButton[str.length];
+	    jp = new JPanel(new GridLayout(6,1,0,20));
+	    jta = new JTextArea();
+	    sp=new JScrollPane();
+	    getContentPane().add(jp,BorderLayout.WEST);
+	    getContentPane().add(jta,BorderLayout.EAST);
+            for(int i=0;i<str.length;i++){
+    	       btn[i] = new JButton(str[i]);
+    	       jp.add(btn[i]);
+    	       btn[i].addActionListener(this);
+    	       btn[i].setActionCommand(str[i]);
+            }
+            sp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+	    sp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+	    sp.setViewportView(jta);
+	    getContentPane().add(sp);
 	  	  
-	}
+	 }
 	
-	//°´Å¥ÊÂ¼ş¼àÌı
+	//æŒ‰é’®äº‹ä»¶ç›‘å¬
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-	 if(e.getActionCommand().equals("ÎÄ¼şÑ¡Ôñ")){
-	    class MyChooser extends JFileChooser{
+	    if(e.getActionCommand().equals("æ–‡ä»¶é€‰æ‹©")){
+	          class MyChooser extends JFileChooser{
 				MyChooser(String path){
 				 super(path);
 				}
@@ -51,14 +51,14 @@ public class Counter extends JFrame implements ActionListener {
 					if(f.exists())
 						super.approveSelection();
 					else
-						JOptionPane.showMessageDialog(null, "µ±Ç°Â·¾¶ÏÂ²»´æÔÚ´ËÎÄ¼ş£¬ÎŞ·¨´ò¿ª");
+						JOptionPane.showMessageDialog(null, "å½“å‰è·¯å¾„ä¸‹ä¸å­˜åœ¨æ­¤æ–‡ä»¶ï¼Œæ— æ³•æ‰“å¼€");
 				 }
 		 }
 		 MyChooser myc=new MyChooser(null);
-		 myc.setDialogTitle("Ñ¡Ôñ½«Òª´ò¿ªµÄÎÄ¼ş");
+		 myc.setDialogTitle("é€‰æ‹©å°†è¦æ‰“å¼€çš„æ–‡ä»¶");
 		 myc.setVisible(true);
 		 int op=myc.showOpenDialog(null);
-	     if(op==MyChooser.APPROVE_OPTION){
+	         if(op==MyChooser.APPROVE_OPTION){
 			file_path=myc.getSelectedFile().getAbsolutePath();
 			FileReader fr=null;
 			BufferedReader br=null;
@@ -70,51 +70,51 @@ public class Counter extends JFrame implements ActionListener {
 			     while((s1=br.readLine())!=null){
 				          s2+=s1+"\r\n";}
 			
-			     jta.setFont(new Font("ËÎÌå",0,20));
+			     jta.setFont(new Font("å®‹ä½“",0,20));
 			     jta.setText(s2);
-		     }catch(Exception e1){ e1.printStackTrace();}
-			 finally{
+		        }catch(Exception e1){ e1.printStackTrace();}
+			finally{
 			    try{
 			        fr.close();
 			        br.close();
 			    }catch(Exception e1){}
-	         }
-	      }
-       }else if(e.getActionCommand().equals("×Ö·ûÍ³¼Æ")){
+	                 }
+	              }
+              }else if(e.getActionCommand().equals("å­—ç¬¦ç»Ÿè®¡")){
     	   	  
 			try {
-				JOptionPane.showMessageDialog(this,"×Ö·ûÊı:"+countchar(file_path));
+				JOptionPane.showMessageDialog(this,"å­—ç¬¦æ•°:"+countchar(file_path));
 			} catch (IOException e1) {
 				e1.printStackTrace();}
 		   	     	   
-       }else if(e.getActionCommand().equals("´ÊÍ³¼Æ")){
+       }else if(e.getActionCommand().equals("è¯ç»Ÿè®¡")){
     	   
-    	   try {
-			JOptionPane.showMessageDialog(this,"´ÊÊı:"+countword(file_path));
-	       } catch (IOException e1) {
-			e1.printStackTrace();}
+    	      try {
+			JOptionPane.showMessageDialog(this,"è¯æ•°:"+countword(file_path));
+	      } catch (IOException e1) {
+		      e1.printStackTrace();}
     	   
-       }else if(e.getActionCommand().equals("ĞĞÍ³¼Æ")){
+       }else if(e.getActionCommand().equals("è¡Œç»Ÿè®¡")){
     	   
-    	   try {
-			JOptionPane.showMessageDialog(this,"ĞĞÊı:"+countline(file_path));
-		   } catch (IOException e1) {
-			e1.printStackTrace();}
+              try {
+			JOptionPane.showMessageDialog(this,"è¡Œæ•°:"+countline(file_path));
+	      } catch (IOException e1) {
+		      e1.printStackTrace();}
     	   
-       }else if(e.getActionCommand().equals("¿ÕĞĞ/×¢ÊÍĞĞ/´úÂëĞĞÍ³¼Æ")){
+       }else if(e.getActionCommand().equals("ç©ºè¡Œ/æ³¨é‡Šè¡Œ/ä»£ç è¡Œç»Ÿè®¡")){
 				int [] num  = new int[3];
 				try {
-					num = countcomplex_data(file_path);
+					num = countcomplex_line(file_path);
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-    	    JOptionPane.showMessageDialog(this, "¿ÕĞĞÊı:"+num[0]
-					+"\n"+"×¢ÊÍĞĞÊı:"+num[1]+"\n"+"´úÂëĞĞÊı£º"+num[2]);   	   
-       } 
+    	                    JOptionPane.showMessageDialog(this, "ç©ºè¡Œæ•°:"+num[0]
+					+"\n"+"æ³¨é‡Šè¡Œæ•°:"+num[1]+"\n"+"ä»£ç è¡Œæ•°ï¼š"+num[2]);   	   
+        } 
 	 
-    }
+     }
 	
-	//Í³¼Æ×Ö·ûÊı
+	//ç»Ÿè®¡å­—ç¬¦æ•°
 	public static int countchar(String filepath) throws IOException{
 		  File file = new File(filepath);
 		  if(file.isFile()){
@@ -125,16 +125,16 @@ public class Counter extends JFrame implements ActionListener {
 			while((s=btin.readLine())!=null)  
 			   numOfchar = numOfchar + s.length();
 			btin.close();
-			System.out.println("×Ö·ûÊı:"+numOfchar);
+			System.out.println("å­—ç¬¦æ•°:"+numOfchar);
 			return numOfchar;
 			
 		   }else {
-			   System.out.println("ÎÄ¼ş²»´æÔÚ£¬ÇëÖØĞÂÊäÈë£¡");
+			   System.out.println("æ–‡ä»¶ä¸å­˜åœ¨ï¼Œè¯·é‡æ–°è¾“å…¥ï¼");
 			   return -1;
 			}			
 			
 		}
-	//Í³¼Æ´ÊÊı
+	//ç»Ÿè®¡è¯æ•°
 	public static int countword(String filepath) throws IOException{
 		  File file = new File(filepath);
 		  if(file.isFile()) {
@@ -152,16 +152,16 @@ public class Counter extends JFrame implements ActionListener {
 			while(m.find())
 			  numOfword++;
 			btin.close();
-			System.out.println("´ÊÊı:"+numOfword);
+			System.out.println("è¯æ•°:"+numOfword);
 			return numOfword;
 			
 		   }else {
-			   System.out.println("ÎÄ¼ş²»´æÔÚ£¬ÇëÖØĞÂÊäÈë£¡");
+			   System.out.println("æ–‡ä»¶ä¸å­˜åœ¨ï¼Œè¯·é‡æ–°è¾“å…¥ï¼");
 			   return -1;
 			}
 
 		}
-	//Í³¼ÆĞĞÊı
+	//ç»Ÿè®¡è¡Œæ•°
 	public static int countline(String filepath) throws IOException{
 		  File file = new File(filepath);
 		  if(file.isFile()){
@@ -171,15 +171,15 @@ public class Counter extends JFrame implements ActionListener {
 			while (btin.readLine() != null)
 				 numOfline++;
 			btin.close();
-			System.out.println("ĞĞÊı:"+numOfline);
+			System.out.println("è¡Œæ•°:"+numOfline);
 			return numOfline;
 		   }else {
-			   System.out.println("ÎÄ¼ş²»´æÔÚ£¬ÇëÖØĞÂÊäÈë£¡");
+			   System.out.println("æ–‡ä»¶ä¸å­˜åœ¨ï¼Œè¯·é‡æ–°è¾“å…¥ï¼");
 			   return -1;
 			}
 		
 		}
-	//µİ¹éµÃµ½Ä¿Â¼ÏÂËùÓĞÎÄ¼şµÄÂ·¾¶
+	//é€’å½’å¾—åˆ°ç›®å½•ä¸‹æ‰€æœ‰æ–‡ä»¶çš„è·¯å¾„
 	public static void multi_file(File f,List<String> paths){
 			if(f!=null){
 				 File[] files=f.listFiles();
@@ -193,33 +193,54 @@ public class Counter extends JFrame implements ActionListener {
 			  }
 		}
 		
-	//´¦Àí¶àÎÄ¼ş
+	//å¤„ç†å¤šæ–‡ä»¶
 	public  static void dealwith_multifile(String command,String filepath) throws IOException{
-		    String endwish = filepath.substring(filepath.lastIndexOf("."));
-		    String directory = filepath.substring(0,filepath.lastIndexOf("\\"));
+		    int index = 0;
+		    int INDEX = 0;
+		    String endwish = null;
+		    String directory = null;
+		    index = filepath.lastIndexOf(".");
+		    INDEX = filepath.lastIndexOf("\\");
+		    if(index!=-1)   //ç”¨æˆ·è¾“å…¥çš„æ–‡ä»¶è·¯å¾„æœ‰åç¼€
+		       endwish = filepath.substring(index);
+		    if(INDEX!=-1)   //ç”¨æˆ·æŒ‡å®šäº†ç›®å½•
+		       directory = filepath.substring(0,INDEX);
+		    else  //ç”¨æˆ·åªæŒ‡å®šäº†åç¼€ï¼Œç›®å½•ç”¨é€šé…ç¬¦ä»£æ›¿ï¼Œå¦‚*.javaï¼Œæ­¤æ—¶ç›®å½•æŒ‡å®šä¸ºå½“å‰ç›®å½•
+		       directory=System.getProperty("user.dir");
+
 		    File f = new File(directory);
-		    System.out.println(directory);
 			List<String> paths = new ArrayList<String>();
 			multi_file(f,paths);
-			String s;
+			String s = null;
 			for (int i=0;i<paths.size();i++){
 				s = paths.get(i);
-				if(s.endsWith(endwish)){
-					System.out.println("ÎÄ¼şÂ·¾¶Îª:"+s);
+				//ifæ¡ä»¶æˆç«‹ï¼Œåªç»Ÿè®¡ç¬¦åˆç”¨æˆ·æŒ‡å®šçš„ç›®å½•(æˆ–è€…å½“å‰ç›®å½•)å’Œåç¼€çš„æ‰€æœ‰æ–‡ä»¶
+				if((index!=-1) && s.endsWith(endwish)){
+					System.out.println("æ–‡ä»¶è·¯å¾„ä¸º:"+s);
 					if(command.equals("-c"))
 						countchar(s);
 					else if(command.equals("-w"))
 						countword(s);
 					else if(command.equals("-l"))
 						countline(s);
-					else{
-						countcomplex_data(s);
-					}					
-				} 
+					else
+						countcomplex_line(s);
+				//å¦åˆ™ç»Ÿè®¡ç”¨æˆ·æŒ‡å®šç›®å½•ä¸‹çš„æ‰€æœ‰æ–‡ä»¶
+				 } else if(index==-1){ 
+					System.out.println("æ–‡ä»¶è·¯å¾„ä¸º:"+s);
+				    if(command.equals("-c"))
+					    countchar(s);
+					else if(command.equals("-w"))
+						countword(s);
+					else if(command.equals("-l"))
+						countline(s);
+					else
+						countcomplex_line(s);			
+				}
 			 }
 	}
-	// ·µ»Ø¸ü¸´ÔÓµÄÊı¾İ(´úÂëĞĞ / ¿ÕĞĞ / ×¢ÊÍĞĞ)
-	public static int[] countcomplex_data(String filepath) throws IOException{
+	// è¿”å›æ›´å¤æ‚çš„æ•°æ®(ä»£ç è¡Œ / ç©ºè¡Œ / æ³¨é‡Šè¡Œ)
+	public static int[] countcomplex_line(String filepath) throws IOException{
 		  File file = new File(filepath);
 		  if(file.isFile()){
 			  
@@ -233,9 +254,9 @@ public class Counter extends JFrame implements ActionListener {
 			boolean mark = false;
 			
 			String REGEX_for_blank="\\s*(.)?\\s*";
-			String REGEX_for_note1 ="\\s*(\\{|\\})?//.*"; //µ¥ĞĞ×¢ÊÍ
-			String REGEX_for_note2 ="\\s*/\\*.*";  //¶àĞĞ×¢ÊÍ¿ªÊ¼
-			String REGEX_for_note3 =".*\\*/";   //¶àĞĞ×¢ÊÍ½áÊø
+			String REGEX_for_note1 ="\\s*(\\{|\\})?//.*"; //å•è¡Œæ³¨é‡Š
+			String REGEX_for_note2 ="\\s*/\\*.*";  //å¤šè¡Œæ³¨é‡Šå¼€å§‹
+			String REGEX_for_note3 =".*\\*/";   //å¤šè¡Œæ³¨é‡Šç»“æŸ
 			
 			while((s=btin.readLine())!=null){
 			  numOfline++;
@@ -258,16 +279,16 @@ public class Counter extends JFrame implements ActionListener {
 			  }
 			}
 			numOfcode = numOfline-numOfblank-numOfnote;
-			System.out.println("¿ÕĞĞÊı:"+numOfblank);
-			System.out.println("×¢ÊÍĞĞÊı:"+numOfnote);
-			System.out.println("´úÂëĞĞÊı:"+numOfcode);
+			System.out.println("ç©ºè¡Œæ•°:"+numOfblank);
+			System.out.println("æ³¨é‡Šè¡Œæ•°:"+numOfnote);
+			System.out.println("ä»£ç è¡Œæ•°:"+numOfcode);
 			btin.close();
 			num[0] = numOfblank;
 			num[1] = numOfnote;
 			num[2] = numOfcode;
 			return num;
 		   }else {
-			   System.out.println("ÎÄ¼ş²»´æÔÚ£¬ÇëÖØĞÂÊäÈë£¡");
+			   System.out.println("æ–‡ä»¶ä¸å­˜åœ¨ï¼Œè¯·é‡æ–°è¾“å…¥ï¼");
 			   return null;
 		   }
 	}
@@ -284,14 +305,14 @@ public class Counter extends JFrame implements ActionListener {
 	   
 	    Scanner in = new Scanner(System.in);
         String[] s = null;
-	    System.out.println("WCÊµÏÖµÄ¹¦ÄÜÈçÏÂ"+ "([ÃüÁî²ÎÊı]:[¹¦ÄÜ]):\n");
-	    System.out.println("-c:×Ö·ûÊı\n-w:µ¥´ÊÊı\n-l:ĞĞÊı\n-s:´¦Àí¶à¸öÎÄ¼ş\n-a:´úÂëĞĞ/¿ÕĞĞ/×¢ÊÍĞĞ\n-x:Í¼ĞÎ½çÃæ\n");
+	    System.out.println("WCå®ç°çš„åŠŸèƒ½å¦‚ä¸‹"+ "([å‘½ä»¤å‚æ•°]:[åŠŸèƒ½]):\n");
+	    System.out.println("-c:å­—ç¬¦æ•°\n-w:å•è¯æ•°\n-l:è¡Œæ•°\n-s:å¤„ç†å¤šä¸ªæ–‡ä»¶\n-a:ä»£ç è¡Œ/ç©ºè¡Œ/æ³¨é‡Šè¡Œ\n-x:å›¾å½¢ç•Œé¢\n");
 
 	    while(true){
-	      System.out.println("Çë°´ÕÕ³ÌĞò´¦ÀíÓÃ»§ĞèÇóµÄÄ£Ê½[parameter] [file_name]ÊäÈë:");
+	      System.out.println("è¯·æŒ‰ç…§ç¨‹åºå¤„ç†ç”¨æˆ·éœ€æ±‚çš„æ¨¡å¼[parameter] [file_name]è¾“å…¥:");
           s= in.nextLine().split(" ");
           if(s.length>=2){
-		      if (s[0].equals("-s")){
+		      if (s[0].equals("-s")){				  
 		    	  dealwith_multifile(s[1],s[2]);
 		      }
 		      else if(s[0].equals("-c")){
@@ -304,17 +325,17 @@ public class Counter extends JFrame implements ActionListener {
 		    	  countline(s[1]);
 		      }	  
 	    	  else if (s[0].equals("-a")){
-	    		  countcomplex_data(s[1]);
+	    		  countcomplex_line(s[1]);
 	    	  }
 	    	  else if(s[0].equals("-x")){
 	    		  wc.setVisible(true);
 	    	  }
 	    	  else 
-	    	  {  System.out.println("ÊäÈëµÄĞèÇóÄ£Ê½ÓĞÎó£¬ÇëÖØĞÂÊäÈë£¡");
+	    	  {  System.out.println("è¾“å…¥çš„éœ€æ±‚æ¨¡å¼æœ‰è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼");
 	    		 break;
 	    	  }	
            }else {
-             System.out.println("ÊäÈëµÄĞèÇóÄ£Ê½ÓĞÎó£¬ÇëÖØĞÂÊäÈë£¡");
+             System.out.println("è¾“å…¥çš„éœ€æ±‚æ¨¡å¼æœ‰è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥ï¼");
              break;}
 	     }
 	     in.close();	    

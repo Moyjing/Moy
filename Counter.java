@@ -78,30 +78,30 @@ public class Counter extends JFrame implements ActionListener {
 			        fr.close();
 			        br.close();
 			    }catch(Exception e1){}
-	                 }
-	              }
-              }else if(e.getActionCommand().equals("字符统计")){
+	                }
+	            }
+             }else if(e.getActionCommand().equals("字符统计")){
     	   	  
 			try {
 				JOptionPane.showMessageDialog(this,"字符数:"+countchar(file_path));
 			} catch (IOException e1) {
 				e1.printStackTrace();}
 		   	     	   
-       }else if(e.getActionCommand().equals("词统计")){
+            }else if(e.getActionCommand().equals("词统计")){
     	   
-    	      try {
-			JOptionPane.showMessageDialog(this,"词数:"+countword(file_path));
-	      } catch (IOException e1) {
-		      e1.printStackTrace();}
+    	                try {
+			        JOptionPane.showMessageDialog(this,"词数:"+countword(file_path));
+	                } catch (IOException e1) {
+		               e1.printStackTrace();}
     	   
-       }else if(e.getActionCommand().equals("行统计")){
+            }else if(e.getActionCommand().equals("行统计")){
     	   
-              try {
-			JOptionPane.showMessageDialog(this,"行数:"+countline(file_path));
-	      } catch (IOException e1) {
-		      e1.printStackTrace();}
+                       try {
+		     	       JOptionPane.showMessageDialog(this,"行数:"+countline(file_path));
+	                } catch (IOException e1) {
+		              e1.printStackTrace();}
     	   
-       }else if(e.getActionCommand().equals("空行/注释行/代码行统计")){
+            }else if(e.getActionCommand().equals("空行/注释行/代码行统计")){
 				int [] num  = new int[3];
 				try {
 					num = countcomplex_line(file_path);
@@ -110,9 +110,9 @@ public class Counter extends JFrame implements ActionListener {
 				}
     	                    JOptionPane.showMessageDialog(this, "空行数:"+num[0]
 					+"\n"+"注释行数:"+num[1]+"\n"+"代码行数："+num[2]);   	   
-        } 
+           } 
 	 
-     }
+        }
 	
 	//统计字符数
 	public static int countchar(String filepath) throws IOException{
@@ -304,19 +304,19 @@ public class Counter extends JFrame implements ActionListener {
 	    wc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	   
 	    Scanner in = new Scanner(System.in);
-        String[] s = null;
+            String[] s = null;
 	    System.out.println("WC实现的功能如下"+ "([命令参数]:[功能]):\n");
 	    System.out.println("-c:字符数\n-w:单词数\n-l:行数\n-s:处理多个文件\n-a:代码行/空行/注释行\n-x:图形界面\n");
 
 	    while(true){
 	      System.out.println("请按照程序处理用户需求的模式[parameter] [file_name]输入:");
-          s= in.nextLine().split(" ");
-          if(s.length>=2){
+              s= in.nextLine().split(" ");
+              if(s.length>=2){
 		      if (s[0].equals("-s")){				  
 		    	  dealwith_multifile(s[1],s[2]);
 		      }
 		      else if(s[0].equals("-c")){
-                  countchar(s[1]);	    	  
+                          countchar(s[1]);	    	  
 		      }
 		      else if(s[0].equals("-w")){
 		    	  countword(s[1]);
@@ -324,21 +324,21 @@ public class Counter extends JFrame implements ActionListener {
 		      else if(s[0].equals("-l")){
 		    	  countline(s[1]);
 		      }	  
-	    	  else if (s[0].equals("-a")){
+	    	      else if (s[0].equals("-a")){
 	    		  countcomplex_line(s[1]);
-	    	  }
-	    	  else if(s[0].equals("-x")){
+	    	      }
+	    	      else if(s[0].equals("-x")){
 	    		  wc.setVisible(true);
-	    	  }
-	    	  else 
-	    	  {  System.out.println("输入的需求模式有误，请重新输入！");
-	    		 break;
-	    	  }	
-           }else {
-             System.out.println("输入的需求模式有误，请重新输入！");
-             break;}
-	     }
+	    	      }
+	    	      else {  
+			  System.out.println("输入的需求模式有误，请重新输入！");
+	    		    break;
+	    	      }	
+                 }else {
+                    System.out.println("输入的需求模式有误，请重新输入！");
+                    break;}
+	        }
 	     in.close();	    
-    }
+      }
 	
 }
